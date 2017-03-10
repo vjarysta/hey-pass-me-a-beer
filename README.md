@@ -1,5 +1,5 @@
 # Hey, pass me a beer!
-Author: [Valentin Jarysta](valentin.jarysta@temelio.com)
+Author: Valentin Jarysta
 
 ## Getting started
 - `git clone https://github.com/vjarysta/hey-pass-me-a-beer.git`
