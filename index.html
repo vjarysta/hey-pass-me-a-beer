@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Hey, pass me a beer!</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="fragment" content="!">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" type="text/css">
+  </head>
+  <body ng-app="beer" ng-controller="BeerCtrl">
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">
+          BEER
+        </a>
+      </div>
+    </nav>
+
+    <div class="row">
+      <form class="col s12">
+        <div class="input-field col s12">
+          <input id="search" type="text" class="validate" ng-model="search.name">
+          <label for="search">Search</label>
+        </div>
+      </form>
+    </div>
+
+    <div class="row">
+      <div class="col s3" ng-repeat="beer in beers | orderBy: 'name' | filter:search">
+        <div class="card">
+          <div class="card-image">
+            <img ng-src="{{beer.pictureUrl}}">
+          </div>
+          <div class="card-content">
+            <p ng-bind="beer.name"></p>
+          </div>
+          <div class="card-action">
+            <a
+            href="{{beer.productUrl}}"
+            ng-bind="beer.price"
+            target="_blank"
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer orange">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Hey, pass me a beer!</h5>
+            <p class="grey-text text-lighten-4">
+              Now you can find the beer you need.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>

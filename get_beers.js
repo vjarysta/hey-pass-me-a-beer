@@ -1,8 +1,9 @@
 const scrapeIt = require('scrape-it');
+const fs = require('fs');
 
 const availableBeers = [];
 const getUrl = (pageNb) => (
-  `https://www.latelierdesbieres.fr/12-achat-bieres-en-ligne#/page-${pageNb}`
+  `https://www.latelierdesbieres.fr/12-achat-bieres-en-ligne?p=${pageNb}`
 );
 let nbOfPages = 0;
 
@@ -11,7 +12,7 @@ let nbOfPages = 0;
  */
 process.on('SIGINT', function() {
   console.log('It seems you killed the program. hopefully we caught your beers:');
-  console.log(availableBeers);
+  displayAllBeers();
   process.exit();
 });
 
@@ -30,6 +31,12 @@ getNbOfPages((res) => {
 });
 
 function displayAllBeers() {
+  const stringifiedBeers = JSON.stringify(availableBeers);
+  fs.writeFile('beers.json', stringifiedBeers, 'utf8', (err) => {
+    if (err) {
+      throw err;
+    }
+  });
   console.log(availableBeers);
 }
 
@@ -46,7 +53,7 @@ function getNbOfPages(callback) {
 }
 
 function getBeers(pageNb, callback) {
-  scrapeIt(`https://www.latelierdesbieres.fr/12-achat-bieres-en-ligne#/page-${pageNb}`, {
+  scrapeIt(getUrl(pageNb), {
     articles: {
       listItem: '#content > ul > li',
       data: {
