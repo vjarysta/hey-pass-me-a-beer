@@ -28,7 +28,7 @@
     </div>
 
     <div class="row">
-      <div class="col s3" ng-repeat="beer in beers | orderBy: 'name' | filter:search">
+      <div class="col s3" ng-repeat="beer in beers | orderBy: 'name' | filter:searchFromStart">
         <div class="card">
           <div class="card-image">
             <img ng-src="{{beer.pictureUrl}}">

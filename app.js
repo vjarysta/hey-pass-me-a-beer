@@ -11,6 +11,14 @@ angular.module('beer', [
   $http.get('beers.json')
   .then((data) => {
     $scope.beers = data.data;
-    console.log($scope.beers);
   });
+
+  $scope.searchFromStart = (input) => {
+    const regex = new RegExp(`^${$scope.search.name}.+`, 'i')
+    const matches = input.name.match(regex);
+    if (matches === null) {
+      return false
+    }
+    return matches.length > 0;
+  };
 });
